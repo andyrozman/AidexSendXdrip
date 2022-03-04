@@ -7,6 +7,7 @@ import android.util.Log;
 import com.atech.aidexsendbroadcast.data.BgReadingDto;
 
 // created by jamorham
+// modified by Andy 4/3/2022
 
 public class BroadcastGlucose {
 
