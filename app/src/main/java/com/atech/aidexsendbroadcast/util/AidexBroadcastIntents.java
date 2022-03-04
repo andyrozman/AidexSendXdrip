@@ -1,7 +1,7 @@
 package com.atech.aidexsendbroadcast.util;
 
 /**
- * For integration.
+ * created by Andy 4/3/2022
  */
 public interface AidexBroadcastIntents {
     // DON'T CHANGE THIS - START
