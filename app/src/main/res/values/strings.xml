@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">AidexSendBroadcast</string>
+
+
+    <string name="other_settings">Other Settings</string>
+    <string name="for_interacting_compatible_apps">For interacting with other compatible apps</string>
+    <string name="interapp_settings">Inter-app settings</string>
+    <string name="send_broadcasts_old_permission_model">Send broadcasts without locking to the older permission model</string>
+    <string name="compatible_broadcast">Compatible Broadcast</string>
+    <string name="summary_Only_send_to_named_package">Only send to named package</string>
+    <string name="title_Identify_receiver">Identify receiver</string>
+    <string name="pref_title_broadcast_enabled">Broadcast locally</string>
+    <string name="pref_summary_broadcast_enabled">Enable local broadcast of data so other apps (e.g. NightWatch) can listen on new values</string>
+    <string name="short_off_text_for_switches">OFF</string>
+    <string name="short_on_text_for_switches">ON</string>
+
+
 </resources>

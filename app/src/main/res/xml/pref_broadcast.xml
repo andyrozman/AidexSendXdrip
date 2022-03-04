@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:key="other_category"
+        android:title="@string/other_settings">
+        <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+            android:key="xdrip_intrer_app_settings"
+            android:summary="@string/for_interacting_compatible_apps"
+            android:title="@string/interapp_settings">
+            <SwitchPreference
+                android:defaultValue="false"
+                android:key="broadcast_data_through_intents"
+                android:summary="@string/pref_summary_broadcast_enabled"
+                android:switchTextOff="@string/short_off_text_for_switches"
+                android:switchTextOn="@string/short_on_text_for_switches"
+                android:title="@string/pref_title_broadcast_enabled" />
+
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:dependency="broadcast_data_through_intents"
+                android:key="broadcast_data_through_intents_without_permission"
+                android:summary="@string/send_broadcasts_old_permission_model"
+                android:title="@string/compatible_broadcast" />
+            <EditTextPreference
+                android:dependency="broadcast_data_through_intents"
+                android:key="local_broadcast_specific_package_destination"
+                android:summary="@string/summary_Only_send_to_named_package"
+                android:title="@string/title_Identify_receiver" />
+        </PreferenceScreen>
+
+    </PreferenceCategory>
+</PreferenceScreen>
+
