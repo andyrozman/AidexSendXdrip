@@ -6,6 +6,7 @@ import android.content.Context;
 
 import com.atech.aidexsendbroadcast.data.BgReadingDto;
 import com.atech.aidexsendbroadcast.data.CalibrationDto;
+import com.atech.aidexsendbroadcast.data.MessageDto;
 import com.atech.aidexsendbroadcast.data.MessageType;
 import com.atech.aidexsendbroadcast.data.SensorActionDto;
 import com.atech.aidexsendbroadcast.data.SensorActionType;
@@ -73,8 +74,11 @@ public class BroadcastApplication extends Application {
                         timestamp));
     }
 
-    public void sendMessage(MessageType messageType, String messageText) {
-
+    public void sendMessage(MessageType messageType, long timestamp, String messageText) {
+        BroadcastData.sendLocalBroadcastWithMessage(
+                new MessageDto(messageType,
+                        timestamp,
+                        messageText));
     }
 
 }
