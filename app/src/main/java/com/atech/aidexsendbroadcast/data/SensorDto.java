@@ -1,7 +1,13 @@
 package com.atech.aidexsendbroadcast.data;
 
 public class SensorDto {
-    public long started_at = System.currentTimeMillis();
+    public long timeStarted;
     public String sensorId;
-    public TransmitterDto transmitterDto= new TransmitterDto();
+    public TransmitterDto transmitter;
+
+    public SensorDto(String sensorId, long timeStarted, TransmitterDto trasnsmitter) {
+        this.sensorId = sensorId;
+        this.timeStarted = timeStarted;
+        this.transmitter = trasnsmitter;
+    }
 }

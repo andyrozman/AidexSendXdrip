@@ -12,9 +12,34 @@ public interface AidexBroadcastIntents {
     String RECEIVER_PERMISSION = "com.microtechmd.cgms.aidex.permissions.RECEIVE_BG_ESTIMATE";
 
     /**
-     * Aidex Intent with Data
+     * Aidex Action: New Bg Estimate
      */
-    String AIDEX_NEW_BG_ESTIMATE = "com.microtechmd.cgms.aidex.BgEstimate";
+    String ACTION_NEW_BG_ESTIMATE = "com.microtechmd.cgms.aidex.action.BgEstimate";
+
+    /**
+     * Aidex Action: Calibration
+     */
+    String ACTION_CALIBRATION = "com.microtechmd.cgms.aidex.action.Calibration";
+
+    /**
+     * Aidex Action: New Sensor
+     */
+    String ACTION_SENSOR_NEW = "com.microtechmd.cgms.aidex.action.SensorNew";
+
+    /**
+     * Aidex Action: Restart Sensor
+     */
+    String ACTION_SENSOR_RESTART = "com.microtechmd.cgms.aidex.action.SensorRestart";
+
+    /**
+     * Aidex Action: Stop Sensor
+     */
+    String ACTION_SENSOR_STOP = "com.microtechmd.cgms.aidex.action.SensorStop";
+
+    /**
+     * Aidex Action: Notification
+     */
+    String ACTION_NOTIFICATION = "com.microtechmd.cgms.aidex.action.Notification";
 
 
     // DATA
@@ -49,6 +74,18 @@ public interface AidexBroadcastIntents {
      * Sensor Id (String)
      */
     String AIDEX_SENSOR_ID = "com.microtechmd.cgms.aidex.SensorId";
+
+    /**
+     * Message Type (SENSOR_ERROR, CALIBRATION_REQUESTED, BATTERY_LOW,
+     *     BATTERY_EMPTY, SENSOR_EXPIRED, OTHER)
+      */
+    String AIDEX_MESSAGE_TYPE = "com.microtechmd.cgms.aidex.MessageType";
+
+    /**
+     * Message Value
+     */
+    String AIDEX_MESSAGE_VALUE = "com.microtechmd.cgms.aidex.MessageValue";
+
     // DON'T CHANGE THIS - END
 
     // You can add your own data here

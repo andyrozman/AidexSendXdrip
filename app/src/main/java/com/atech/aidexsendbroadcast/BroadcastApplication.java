@@ -5,8 +5,15 @@ import android.app.Application;
 import android.content.Context;
 
 import com.atech.aidexsendbroadcast.data.BgReadingDto;
+import com.atech.aidexsendbroadcast.data.CalibrationDto;
+import com.atech.aidexsendbroadcast.data.MessageType;
+import com.atech.aidexsendbroadcast.data.SensorActionDto;
+import com.atech.aidexsendbroadcast.data.SensorActionType;
 import com.atech.aidexsendbroadcast.data.SensorDto;
-import com.atech.aidexsendbroadcast.util.BroadcastGlucose;
+import com.atech.aidexsendbroadcast.data.TransmitterDto;
+import com.atech.aidexsendbroadcast.util.BroadcastData;
+
+import java.util.UUID;
 
 public class BroadcastApplication extends Application {
 
@@ -23,13 +30,51 @@ public class BroadcastApplication extends Application {
         return BroadcastApplication.context;
     }
 
+    TransmitterDto transmitterDto= new TransmitterDto();
+    private SensorDto sensorDto = new SensorDto(UUID.randomUUID().toString(), System.currentTimeMillis(), transmitterDto);
 
-    public void sendBroadcastData() {
-        SensorDto sensorDto = new SensorDto();
-        BgReadingDto reading = new BgReadingDto(System.currentTimeMillis(), 5.7f, sensorDto);
-
-        BroadcastGlucose.sendLocalBroadcast(reading);
+    /**
+     * When new data is received
+     */
+    public void sendNewBroadcastData(long timestamp, float bgValue) {
+        BroadcastData.sendLocalBroadcastWithNewBgData(new BgReadingDto(timestamp, bgValue, sensorDto));
     }
 
+    public void sendNewSensor(SensorDto dto) {
+        BroadcastData.sendLocalBroadcastWithSensorAction(
+                new SensorActionDto(SensorActionType.NEW_SENSOR,
+                        System.currentTimeMillis(),
+                        dto.sensorId,
+                        dto.transmitter
+        ));
+    }
+
+    public void sendRestartSensor(SensorDto dto) {
+        BroadcastData.sendLocalBroadcastWithSensorAction(
+                new SensorActionDto(SensorActionType.NEW_SENSOR,
+                        System.currentTimeMillis(),
+                        dto.sensorId,
+                        dto.transmitter
+                ));
+    }
+
+    public void stopSensor(SensorDto dto) {
+        BroadcastData.sendLocalBroadcastWithSensorAction(
+                new SensorActionDto(SensorActionType.NEW_SENSOR,
+                        System.currentTimeMillis(),
+                        dto.sensorId,
+                        dto.transmitter
+                ));
+    }
+
+    public void sendCalibration(float calibration, long timestamp) {
+        BroadcastData.sendLocalBroadcastWithCalibration(
+                new CalibrationDto(calibration,
+                        timestamp));
+    }
+
+    public void sendMessage(MessageType messageType, String messageText) {
+
+    }
 
 }
