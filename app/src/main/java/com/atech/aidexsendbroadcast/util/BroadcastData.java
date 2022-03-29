@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.atech.aidexsendbroadcast.data.AidexHistory;
-import com.atech.aidexsendbroadcast.data.BgReadingDto;
 import com.atech.aidexsendbroadcast.data.BgType;
 
 

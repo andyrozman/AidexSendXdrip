@@ -65,6 +65,8 @@ public class BroadcastApplication extends Application {
             return; // each broadcast is sent only once
         }
 
+        lastBroadcastHistoryEventIndex = currentAidexHistory.historyEventIndex;
+
         if (currentAidexHistory.isValidGlucoseEntry()) {
             if (currentAidexHistory.glucose > 0) {
                 BroadcastData.sendLocalBroadcastWithNewBgData(currentAidexHistory, lastBgAidexHistory, bgType);
@@ -100,10 +102,6 @@ public class BroadcastApplication extends Application {
         return history;
 
     }
-
-
-
-
 
     private void checkIfSpecialBroadcastNeeded(AidexHistory data) {
 
