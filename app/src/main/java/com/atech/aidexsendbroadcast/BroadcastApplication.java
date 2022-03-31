@@ -65,6 +65,10 @@ public class BroadcastApplication extends Application {
             return; // each broadcast is sent only once
         }
 
+        if (currentAidexHistory.historyEventIndex < lastBroadcastHistoryEventIndex) {
+            return; // we send only events that are newer than one already sent
+        }
+
         lastBroadcastHistoryEventIndex = currentAidexHistory.historyEventIndex;
 
         if (currentAidexHistory.isValidGlucoseEntry()) {
@@ -94,7 +98,6 @@ public class BroadcastApplication extends Application {
         history.historyEventIndex = hst.getEventIndex();
         history.historyEventType = hst.getEventType();
         history.historyEventValue = hst.getEventData();
-        //history.historyRawValue = gson.toJson(hst.getRawData());
 
         history.sensorId = sensorId;
         history.tansmitterSn = transmitterSerial;
@@ -163,7 +166,7 @@ public class BroadcastApplication extends Application {
 
             case History.HISTORY_SENSOR_NEW: {
                 // we send sensor new only when sensor is really changed
-                if (newSensorId==null) {
+                if (newSensorId==null || !newSensorId.equals(data.sensorId)) {
                     newSensorId = data.sensorId;
 
                     if (isSensorRestarted) {
@@ -175,19 +178,7 @@ public class BroadcastApplication extends Application {
                                 data.historyDatetime, data.sensorId, data.tansmitterSn);
                     }
 
-                    return;
-                }
-
-                if (!newSensorId.equals(data.sensorId)) {  // we send broadcast only on first report of new sensor
-                    if (isSensorRestarted) {
-                        BroadcastData.sendLocalBroadcastWithSensorAction(SensorActionType.RESTART_SENSOR,
-                                data.historyDatetime, data.sensorId, data.tansmitterSn);
-                        isSensorRestarted = false; // resetting variable
-                    } else {
-                        BroadcastData.sendLocalBroadcastWithSensorAction(SensorActionType.NEW_SENSOR,
-                                data.historyDatetime, data.sensorId, data.tansmitterSn);
-                    }
-                    newSensorId = data.sensorId;
+                    isSensorRestarted = false; // we reset this
                 }
 
                 return;
